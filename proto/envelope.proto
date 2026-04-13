@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package runicnexus;
+
+option go_package = "github.com/PedroVicente98/RunicNexus/proto";
+
+// Envelope is the core packet definition that wraps every message
+// traveling through the RunicNexus network layer.
+message Envelope {
+  // Unique identifier for this packet.
+  string id = 1;
+
+  // The routing topic / channel this packet targets.
+  string topic = 2;
+
+  // Arbitrary serialized payload (usually another protobuf message).
+  bytes payload = 3;
+
+  // Unix timestamp (milliseconds) when the packet was created.
+  int64 timestamp_ms = 4;
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package runicnexus;
+
+option go_package = "github.com/PedroVicente98/RunicNexus/proto";
+
+// BufferConfig describes a user-defined buffer configuration for a
+// specific communication channel or module.
+message BufferConfig {
+  // Human-readable name for this configuration.
+  string name = 1;
+
+  // Maximum number of messages allowed in the buffer before back-pressure
+  // is applied.
+  int32 max_buffer_size = 2;
+
+  // Timeout in milliseconds before a buffered message is dropped.
+  int64 timeout_ms = 3;
+}
+
+// ApiConfig is the top-level configuration object that users define to
+// customize how the RunicNexus API layer behaves.
+message ApiConfig {
+  // List of buffer configurations for individual channels.
+  repeated BufferConfig buffers = 1;
+}
